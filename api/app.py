@@ -49,8 +49,8 @@ def create_user(user):
     score = 0
     response = requests.post(db_url, json=payload, headers=headers).json()
     save_user(user,score)
-    if response.get('success') == True:
-        return jsonify({'User':user,'Score':score})
+    # if response.get('success') == True:
+    #     return jsonify({'User':user,'Score':score})
 
 def save_user(user,score):
     with open(PROJECT_HOME+'/users.json', "r+") as file:
@@ -94,7 +94,7 @@ def fetch_user(user):
 
 @app.route('/<user>/upload', methods=['POST'])
 def upload_file(user):
-    app.logger.info(PROJECT_HOME)
+
     global score
     global payload
     if request.method == 'POST' and request.files['file']:

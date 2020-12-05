@@ -108,7 +108,7 @@
       <section class="container section1">
         <div class="section1__user">
           <form class="name-form" method="post" action="">
-            <input type="text" name="name" placeholder="USER-NAME" />
+            <input type="text" name="name" id="username" placeholder="USER-NAME" />
           </form>
           <p>*Enter the same name as you entered before!</p>
           <!-- <div class="uploadOuter">
@@ -120,7 +120,7 @@
           <span class="dragBox">
             <!-- Drag and Drop Image Here -->
             <input
-              type="file"
+              type="file" id="filechooser"
               onchange="dragNdrop(event)"
               ondragover="drag()"
               ondrop="drop()"
@@ -129,7 +129,7 @@
 
           <p>Upload OR Drag and Drop Image Here</p>
           <div id="preview"></div>
-          <button type="button" class="btn btn-dark">Check</button>
+          <button type="button" onclick="uploadFile()" class="btn btn-dark">Check</button>
         </div>
         <div class="section1__score">
           <div class="card">
@@ -187,6 +187,34 @@
     <script type="text/javascript">
       var scene = document.getElementById("scene");
       var parallax = new Parallax(scene);
+		
+
+	
+	  function uploadFile() {
+		var blobFile = $('#filechooser').files[0];
+		var formData = new FormData();
+		var username=document.getElementById('username').value;
+		var api='https://sharkhacks.herokuapp.com/';
+
+		formData.append("file", blobFile);
+		userdata=api+username;
+		fetch(userdata);
+
+		$.ajax({
+		url: userdata+'/uploads',
+		type: "POST",
+		data: formData,
+		processData: false,
+		contentType: false,
+		success: function(response) {
+			// .. do something
+			console.log(response);
+		},
+		error: function(jqXHR, textStatus, errorMessage) {
+			console.log(errorMessage); // Optional
+		}
+		});
+}
     </script>
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
