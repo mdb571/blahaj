@@ -1,12 +1,15 @@
 const table = document.querySelector(".table")
 
-const data ={
-'user1': 30,
-'user2' : 20 ,
-'user3' : 30
-}
+const API = "https://sharkhacks.herokuapp.com/leaderboard"
 
-for (key in data){
+function getData () {
+    fetch(`${API}`).then(response => response.json()).then(displayData);
+    
+}
+ 
+displayData =(res) =>{
+    let data = res;
+    for (key in data){
     console.log(key, data[key]);
     const tableData = document.createElement("tr")
     tableData.innerHTML = `
@@ -14,3 +17,6 @@ for (key in data){
     <td>${data[key]} 🦈</td>`
     table.appendChild(tableData)    
 }
+}
+
+window.onload = getData()
