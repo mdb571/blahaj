@@ -90,9 +90,9 @@
     <section class="container section1">
 		
     	<div class="section1__user">
-    		<form class="name-form" method="post" action="">
-    			<input type="text" name="name" placeholder="Your Full Name">
-    		</form>
+    		
+    			<input type="text" id="username" name="name" placeholder="username">
+    	
     		<p>Enter the same name as you entered before!</p>
     		<!-- <div class="uploadOuter">
     			<label for="uploadFile" class="btn btn-primary">
@@ -101,8 +101,8 @@
     			<strong>OR</strong>
     		</div> -->
     		<span class="dragBox">
-    			<!-- Drag and Drop Image Here -->
-    			<input type="file" onchange="dragNdrop(event)"
+				<!-- Drag and Drop Image Here -->
+    			<input type="file" id="filechooser" name="file" onchange="dragNdrop(event)"
     			ondragover="drag()"
     			ondrop="drop()"
     			>
@@ -110,7 +110,7 @@
 
     		<p>Upload OR Drag and Drop Image Here</p>
     		<div id="preview"></div>
-    		<button type="button" class="btn btn-dark">Check</button>
+    		<button type="button" onclick="postData()" class="btn btn-dark">Submit</button>
     	</div>
     	<div class="section1__score">
     		<div class="card">
@@ -137,6 +137,33 @@
     <script type="text/javascript">
       var scene = document.getElementById("scene");
       var parallax = new Parallax(scene);
+	  var username=document.getElementById('username').value;
+	  var api='https://sharkhacks.herokuapp.com/';
+		
+
+	
+	  function uploadFile() {
+		var blobFile = $('#filechooser').files[0];
+		var formData = new FormData();
+		formData.append("file", blobFile);
+		userdata=api+username;
+		fetch(userdata);
+
+		$.ajax({
+		url: userdata+'/uploads',
+		type: "POST",
+		data: formData,
+		processData: false,
+		contentType: false,
+		success: function(response) {
+			// .. do something
+			console.log(response);
+		},
+		error: function(jqXHR, textStatus, errorMessage) {
+			console.log(errorMessage); // Optional
+		}
+		});
+}
     </script>
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
