@@ -297,7 +297,7 @@ img {
 }
 
 section {
-	background-image: url(../images/6.jpg);
+	background-image: url(../Images/6.jpg);
 	margin-top: -116px;
 	/*clip-path: polygon(50% 0%, 76% 4%, 100% 0, 100% 100%, 76% 96%, 50% 100%, 23% 96%, 0 100%, 0 0, 22% 5%);*/
 	background-repeat: no-repeat;
