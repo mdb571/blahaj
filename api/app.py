@@ -54,7 +54,7 @@ def create_user(user):
 
 def save_user(user,score):
     with open(PROJECT_HOME+'/users.json', "r+") as file:
-        data = json.loads(file)
+        data = json.load(file)
         if user not in data.keys():
             data.update({user:score})
         else:
@@ -86,10 +86,12 @@ def fetch_user(user):
         return create_user(user)
     else:
         with open(PROJECT_HOME+'/users.json', "r+") as file:
-            data = json.loads(file)
+            data = json.load(file)
         if user in data.keys():
             return jsonify({'User':user,'Score':data[user]})
-        
+        else:
+            create_user(user)
+            return jsonify({'User':user,'Score':0})
 
 
 @app.route('/<user>/upload', methods=['POST'])
@@ -119,7 +121,7 @@ def upload_file(user):
 @app.route('/leaderboard')
 def leaderboard():
     with open(PROJECT_HOME+'/users.json', "r+") as file:
-            data = json.loads(file)
+            data = json.load(file)
             sorted_scores={k: data[k] for k in sorted(data, key=data.get, reverse=True)}   
             return jsonify(sorted_scores)
 
