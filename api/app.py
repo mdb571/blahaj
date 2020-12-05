@@ -6,6 +6,7 @@ from flask import Flask, jsonify, send_from_directory, request
 from werkzeug.utils import secure_filename
 from feature import describe_image
 import json
+from flask_cors import CORS
 load_dotenv()
 
 databaseId = os.environ.get('ASTRA_CLUSTER_ID')
@@ -13,6 +14,7 @@ region = os.environ.get('ASTRA_CLUSTER_REGION')
 token = os.environ.get('ASTRA_AUTHORIZATION_TOKEN')
 
 app = Flask(__name__)
+CORS(app)
 
 file_handler = logging.FileHandler('server.log')
 app.logger.addHandler(file_handler)
