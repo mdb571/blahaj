@@ -204,6 +204,7 @@
 	function upload(ev){
 		ev.preventDefault();    //stop the form submitting
 		fetch(fetch_url);
+		var uploadUrl=fetch_url+'/upload';
 		//create any headers we want
 		let h = new Headers();
 		h.append('Accept', 'application/json'); //what we expect back
@@ -213,8 +214,9 @@
 		
 		let myFile = document.getElementById('filechooser').files[0];
 		fd.append('file', myFile);
+
 		// $_FILES['avatar']['file_name']  "avatar.png"
-		let req = new Request(fetch_url+'/upload', {
+		let req = new Request(uploadUrl, {
 			method: 'POST',
 			headers: h,
 			mode: 'no-cors',
