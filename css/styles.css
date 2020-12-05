@@ -257,7 +257,7 @@ strong {
 	line-height: 95px;
 	color: #999;
 	border: 2px dashed #ccc;
-	display: inline-block;
+	/* display: inline-block; */
 	transition: transform 0.3s;
 }
 
@@ -319,4 +319,18 @@ svg circle:nth-child(2) {
 
 .card svg circle:nth-child(2) {
 	stroke: #98acf8;
+}
+
+
+.section1{
+	display: flex;
+	justify-content: space-between;
+}
+
+.section1__user{
+	flex: 0.6;
+}
+
+.section1__score{
+	flex: 0.4;
 }
