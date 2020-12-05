@@ -137,14 +137,15 @@
     <script type="text/javascript">
       var scene = document.getElementById("scene");
       var parallax = new Parallax(scene);
-	  var username=document.getElementById('username').value;
-	  var api='https://sharkhacks.herokuapp.com/';
 		
 
 	
 	  function uploadFile() {
 		var blobFile = $('#filechooser').files[0];
 		var formData = new FormData();
+		var username=document.getElementById('username').value;
+		var api='https://sharkhacks.herokuapp.com/';
+
 		formData.append("file", blobFile);
 		userdata=api+username;
 		fetch(userdata);
