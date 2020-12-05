@@ -108,6 +108,7 @@ header {
 
 .layer3{
   left: 50% !important;
+  top: 25% !important;
 }
 
 
@@ -514,6 +515,50 @@ svg circle:nth-child(2) {
 	font-weight: 600;
 }
 
+.twitterIcon{
+	display: flex;
+	justify-content: center;
+}
+
 .twitterIcon img{
 	width: 100px;
+}
+
+.twitterShare{
+	margin-top: 50px;
+}
+
+.twitterShare button{
+	display: flex;
+	color: black;
+	margin:auto;
+	padding:20px 30px;
+}
+
+
+.footer{
+	background-color: black;
+	display: flex;
+	height: 20vh;
+	justify-content: space-between;
+}
+
+.footerRight{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	color: #bedcfa;
+	padding-right: 10px;
+}
+
+.footerLeft{
+	display: flex;
+	height: 100%;
+}
+
+.footerIcon img{
+	width: 100px;
+	padding-left: 15px;
+	align-items: center;
+	padding-top: 20px;
 }
