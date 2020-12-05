@@ -20,7 +20,7 @@
     display: flex;
     justify-content: center;
     padding: 20px;
-    padding-top: 40px;
+    padding-top: 100px;
     text-shadow: 3px 3px 3px black;
   }
   
@@ -28,6 +28,7 @@
     display: flex;
     justify-content: center;
     padding-top: 50px;
+    padding-bottom: 50px;
   }
   
   img.imgLeft {
