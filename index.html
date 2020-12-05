@@ -207,7 +207,7 @@
 		let fd = new FormData();
 		
 		
-		let myFile = document.getElementById('avatar_img').files[0];
+		let myFile = document.getElementById('filechooser').files[0];
 		fd.append('file', myFile);
 		// $_FILES['avatar']['file_name']  "avatar.png"
 		let req = new Request(url, {
