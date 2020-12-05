@@ -192,17 +192,18 @@
       var parallax = new Parallax(scene);
 		
 
-	  const url = 'https://sharkhacks.herokuapp.com';
+	  const url = 'https://sharkhacks.herokuapp.com/';
 	  var username=document.getElementById('username').value;
+	  var fetch_url=url+username;
 	document.addEventListener('DOMContentLoaded', init);
 
-	function init(){
+	function init(){_url
 		document.getElementById('btnSubmit').addEventListener('click', upload);
 	}
 
 	function upload(ev){
 		ev.preventDefault();    //stop the form submitting
-
+		fetch(fetch_url);
 		//create any headers we want
 		let h = new Headers();
 		h.append('Accept', 'application/json'); //what we expect back
@@ -213,7 +214,7 @@
 		let myFile = document.getElementById('filechooser').files[0];
 		fd.append('file', myFile);
 		// $_FILES['avatar']['file_name']  "avatar.png"
-		let req = new Request(url, {
+		let req = new Request(fetch_url+'/upload', {
 			method: 'POST',
 			headers: h,
 			mode: 'no-cors',
