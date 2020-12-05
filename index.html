@@ -120,7 +120,7 @@
           <span class="dragBox">
             <!-- Drag and Drop Image Here -->
             <input
-              type="file" id="filechooser"
+              type="file" id="filechooser" accept="image/x-png"
               onchange="dragNdrop(event)"
               ondragover="drag()"
               ondrop="drop()"
@@ -129,7 +129,7 @@
 
           <p>Upload OR Drag and Drop Image Here</p>
           <div id="preview"></div>
-          <button type="button" onclick="uploadFile()" class="btn btn-dark">Check</button>
+          <button type="button" id="btnSubmit" class="btn btn-dark">Check</button>
         </div>
         <div class="section1__score">
           <div class="card">
@@ -189,32 +189,42 @@
       var parallax = new Parallax(scene);
 		
 
-	
-	  function uploadFile() {
-		var blobFile = $('#filechooser').files[0];
-		var formData = new FormData();
-		var username=document.getElementById('username').value;
-		var api='https://sharkhacks.herokuapp.com/';
+	  const url = 'https://sharkhacks.herokuapp.com';
+	  var username=document.getElementById('username').value;
+	document.addEventListener('DOMContentLoaded', init);
 
-		formData.append("file", blobFile);
-		userdata=api+username;
-		fetch(userdata);
+	function init(){
+		document.getElementById('btnSubmit').addEventListener('click', upload);
+	}
 
-		$.ajax({
-		url: userdata+'/uploads',
-		type: "POST",
-		data: formData,
-		processData: false,
-		contentType: false,
-		success: function(response) {
-			// .. do something
-			console.log(response);
-		},
-		error: function(jqXHR, textStatus, errorMessage) {
-			console.log(errorMessage); // Optional
-		}
+	function upload(ev){
+		ev.preventDefault();    //stop the form submitting
+
+		//create any headers we want
+		let h = new Headers();
+		h.append('Accept', 'application/json'); //what we expect back
+		//bundle the files and data we want to send to the server
+		let fd = new FormData();
+		
+		
+		let myFile = document.getElementById('avatar_img').files[0];
+		fd.append('file', myFile);
+		// $_FILES['avatar']['file_name']  "avatar.png"
+		let req = new Request(url, {
+			method: 'POST',
+			headers: h,
+			mode: 'no-cors',
+			body: fd
 		});
-}
+
+		fetch(req)
+			.then( (response)=>{
+				console.log(response);
+			})
+			.catch( (err) =>{
+				console.log('ERROR:', err.message);
+			});
+	}
     </script>
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
