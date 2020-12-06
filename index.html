@@ -39,7 +39,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- <link href="css/normalize.css" rel="stylesheet"> -->
   </head>
-  <body>
+  <body onload="getfacts()">
     <header>
       <div class="container">
         <nav class="navbar navbar-expand-lg sticky-top">
@@ -172,10 +172,7 @@
       <div class="section2__quote">
         <div class="section2__quoteHeading">Sharky Wisdom</div>
         <p class="section2__para">
-          "<span
-            >Lorem, ipsum dolor sit amet consectetur adipisicing elit. Porro
-            molestias aut ea ut rerum quis?</span
-          >"
+          <h3 id="fact"></h3>
         </p>
       </div>
       <div class="section2__share">
@@ -186,7 +183,7 @@
           <img src="./Images/icons8-twitter-64.png" alt="" />
         </div>
         <div class="twitterShare">
-          <button>Share 🦈</button>
+          <button onclick="location.href='https://twitter.com/intent/tweet?url=https%3A%2F%2Fcaptblahaj.co&via=MLHacks&text=Hey%20I%20just%20joined%20Captain%20Blahaj%27s%20mission%20to%20save%20the%20seas%20.You%20can%20do%20your%20part%20too'" >Share 🦈</button>
         </div>
       </div>
     </div>
@@ -202,6 +199,20 @@
     </div>
     <!--  -->
     <script type="text/javascript" >
+    const fact_url='http://localhost:5000/sharkfacts';
+    const facts=document.getElementById('fact');
+    function getfacts(){
+      fetch(fact_url)
+      .then((resp) => resp.json())
+      .then(function(data){
+                    facts.textContent=data.fact;
+                    console.log(facts.textContent)
+                }).catch(function (error){
+                    console.log(error);
+                })
+
+            
+    }
      $("#uploadForm").submit(function(event) {
 		var username = document.getElementById('username').value;
     document.getElementById('uploadForm').action += username+'/upload';
