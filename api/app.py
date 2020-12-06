@@ -131,5 +131,7 @@ def leaderboard():
 @app.route('/sharkfacts')
 def fact():
     return jsonify({'fact':random.choice(sharkfacts)})
+
+    
 if __name__ == '__main__':
     app.run(debug=True)
