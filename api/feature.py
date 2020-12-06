@@ -31,7 +31,7 @@ def describe_image(filename):
         caption = str(caption.text)
         if 'water' or 'outdoor'or'beach'or'nature'or'bird'or'ocean'or'bottle'or'surfing'or'flock'or'pile' in description_result.tags:
             print("It works")
-            return 5
+            return 35
         else:
             return 0
         
