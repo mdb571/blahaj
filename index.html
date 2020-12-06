@@ -159,7 +159,7 @@
               <div class="percent">
                 <svg>
                   <circle cx="70" cy="70" r="70"></circle>
-                  <circle cx="70" cy="70" r="70"></circle>
+                  <circle id="circle" cx="70" cy="70" r="70"></circle>
                 </svg>
                 <div class="number">
                   <div class="scoreData">
@@ -210,6 +210,7 @@
     <!--  -->
     <script type="text/javascript">
       const num = document.querySelector(".scoreData");
+      const circle=document.getElementById("circle");
       console.log(num);
       // let score = 20;
       const fact_url = "https://sharkhacks.herokuapp.com/sharkfacts";
@@ -243,6 +244,8 @@
             let score = data.Score;
             console.log(score);
             num.innerHTML = ` <h2> ${score}<span>🦈</span></h2>  `;
+            var number = parseInt(score);
+            circle.style.strokeDashoffset=440 - (440 * number) / 100;
             //         score = 10
             // console.log(score);
             // document.querySelector(".card svg circle:nth-child(2)").style.strokeDashOffset = `calc(440 - (440 * ${score}) / 100)`
