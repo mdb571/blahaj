@@ -115,8 +115,8 @@
       <section class="container section1">
         <div class="section1__user">
           <form
-          name="image_upload"
-          id="uploadForm"
+            name="image_upload"
+            id="uploadForm"
             method="POST"
             action="https://sharkhacks.herokuapp.com/"
             enctype="multipart/form-data"
@@ -129,24 +129,28 @@
             />
 
             <p>*Enter the same name as you entered before!</p>
-            
+
             <span class="dragBox">
               <!-- Drag and Drop Image Here -->
               <input
-              name="file"
+                name="file"
                 type="file"
                 id="filechooser"
                 accept="image/x-png"
-               
               />
             </span>
             <!-- <p><input type="submit" value="Submit"></p> -->
 
             <p>Upload OR Drag and Drop Image Here</p>
             <div id="preview"></div>
-            <button type="submit" value="Submit" id="btnSubmit" class="btn btn-dark">
+            <button
+              type="submit"
+              value="Submit"
+              id="btnSubmit"
+              class="btn btn-dark"
+            >
               Check
-            </button>  
+            </button>
           </form>
         </div>
         <div class="section1__score">
@@ -173,9 +177,9 @@
     <div class="section2">
       <div class="section2__quote">
         <div class="section2__quoteHeading">Sharky Wisdom</div>
-        <p class="section2__para">
-          <h3 id="fact"></h3>
-        </p>
+        <p class="section2__para">"</p>
+        <h3 id="fact"></h3>
+        <p class="section2__para">"</p>
       </div>
       <div class="section2__share">
         <div class="section2__shareHeading">
@@ -185,7 +189,11 @@
           <img src="./Images/icons8-twitter-64.png" alt="" />
         </div>
         <div class="twitterShare">
-          <button onclick="location.href='https://twitter.com/intent/tweet?url=https%3A%2F%2Fcaptblahaj.co&via=MLHacks&text=Hey%20I%20just%20joined%20Captain%20Blahaj%27s%20mission%20to%20save%20the%20seas%20.You%20can%20do%20your%20part%20too'" >Share 🦈</button>
+          <button
+            onclick="location.href='https://twitter.com/intent/tweet?url=https%3A%2F%2Fcaptblahaj.co&via=MLHacks&text=Hey%20I%20just%20joined%20Captain%20Blahaj%27s%20mission%20to%20save%20the%20seas%20.You%20can%20do%20your%20part%20too'"
+          >
+            Share 🦈
+          </button>
         </div>
       </div>
     </div>
@@ -200,65 +208,57 @@
       </div>
     </div>
     <!--  -->
-    <script type="text/javascript" >
-    const num = document.querySelector(".scoreData")
-    console.log(num);
-    // let score = 20;
-    const fact_url='https://sharkhacks.herokuapp.com/sharkfacts';
-    const facts=document.getElementById('fact');
-    function getfacts(){
-      fetch(fact_url)
-      .then((resp) => resp.json())
-      .then(function(data){
-                    facts.textContent=data.fact;
-                    console.log(facts.textContent)
-                }).catch(function (error){
-                    console.log(error);
-                })
-
-            
-    }
-     $("#uploadForm").submit(function(event) {
-		var username = document.getElementById('username').value;
-    document.getElementById('uploadForm').action += username+'/upload';
-    var formData = new FormData();
-    formData.append("file", $('[name="file"]')[0].files[0]);
-    event.stopPropagation();
-    event.preventDefault();
-    $.ajax({
-      url: $(this).attr("action"),
-      data: formData,
-      processData: false,
-      contentType: false,
-      type: 'POST',
-      success: function(data) {
-        // alert(JSON.stringify(data));
-        let score = data.Score;
-        console.log(score);
-        num.innerHTML=` <h2> ${score}<span>🦈</span></h2>  `
-//         score = 10
-// console.log(score);
-        // document.querySelector(".card svg circle:nth-child(2)").style.strokeDashOffset = `calc(440 - (440 * ${score}) / 100)`
+    <script type="text/javascript">
+      const num = document.querySelector(".scoreData");
+      console.log(num);
+      // let score = 20;
+      const fact_url = "https://sharkhacks.herokuapp.com/sharkfacts";
+      const facts = document.getElementById("fact");
+      function getfacts() {
+        fetch(fact_url)
+          .then((resp) => resp.json())
+          .then(function (data) {
+            facts.textContent = data.fact;
+            console.log(facts.textContent);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
       }
-    });
-    return false;
-  });
-  // const num = document.querySelector(".scoreData")
-  //       console.log(num);
-  // const scoreDataPer = document.createElement("h2")
-        // num.innerHTML=` <h2> ${score}<span>🦈</span></h2>  `
-        // num.appendChild(scoreDataPer)
+      $("#uploadForm").submit(function (event) {
+        var username = document.getElementById("username").value;
+        document.getElementById("uploadForm").action += username + "/upload";
+        var formData = new FormData();
+        formData.append("file", $('[name="file"]')[0].files[0]);
+        event.stopPropagation();
+        event.preventDefault();
+        $.ajax({
+          url: $(this).attr("action"),
+          data: formData,
+          processData: false,
+          contentType: false,
+          type: "POST",
+          success: function (data) {
+            // alert(JSON.stringify(data));
+            let score = data.Score;
+            console.log(score);
+            num.innerHTML = ` <h2> ${score}<span>🦈</span></h2>  `;
+            //         score = 10
+            // console.log(score);
+            // document.querySelector(".card svg circle:nth-child(2)").style.strokeDashOffset = `calc(440 - (440 * ${score}) / 100)`
+          },
+        });
+        return false;
+      });
+      // const num = document.querySelector(".scoreData")
+      //       console.log(num);
+      // const scoreDataPer = document.createElement("h2")
+      // num.innerHTML=` <h2> ${score}<span>🦈</span></h2>  `
+      // num.appendChild(scoreDataPer)
 
-
-
-        // const yy = document.querySelector(".card svg circle:nth-child(2)")
-        // console.log(yy);
-        // yy.style.strokeDashOffset = "calc(440 - (440 * 50) / 100)"
-
-
-
-
-
+      // const yy = document.querySelector(".card svg circle:nth-child(2)")
+      // console.log(yy);
+      // yy.style.strokeDashOffset = "calc(440 - (440 * 50) / 100)"
     </script>
     <script src="./js/res.js"></script>
     <script src="./js/script.js" type="text/javascript"></script>
@@ -282,6 +282,5 @@
       integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
       crossorigin="anonymous"
     ></script> -->
-    
   </body>
 </html>
