@@ -173,7 +173,9 @@ header {
       text-transform: uppercase;
       font-size:2em;
       font-family: 'Oswald', sans-serif;
-      margin-bottom:0.5rem;
+	  margin-bottom:0.5rem;
+	  margin-top: 100px;
+	  text-align: center;
 
 }
 
