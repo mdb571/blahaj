@@ -7,6 +7,7 @@ from werkzeug.utils import secure_filename
 from feature import describe_image
 import json
 from flask_cors import CORS
+import random
 load_dotenv()
 
 databaseId = os.environ.get('ASTRA_CLUSTER_ID')
@@ -19,6 +20,8 @@ CORS(app)
 file_handler = logging.FileHandler('server.log')
 app.logger.addHandler(file_handler)
 app.logger.setLevel(logging.INFO)
+
+sharkfacts=["Different shark species reproduce in different ways","Not all sharks have the same teeth","Some species of sharks have a spiracle that allows them to pull water into their respiratory system while at rest. Most sharks have to keep swimming to pump water over their gills","Each whale shark’s spot pattern is unique as a fingerprint","Blue sharks are really blue","Scientists age sharks by counting the rings on their vertebrae","Sharks have been around a very long time","Sharks can go into a trance","Shark skin feels similar to sandpaper","Sharks have special electroreceptor organs","Most sharks have good eyesight","Sharks do not have bones"]
 
 PROJECT_HOME = os.path.dirname(os.path.realpath(__file__))
 UPLOAD_FOLDER = '{}/uploads/'.format(PROJECT_HOME)
@@ -125,6 +128,8 @@ def leaderboard():
             sorted_scores={k: data[k] for k in sorted(data, key=data.get, reverse=True)}   
             return jsonify(sorted_scores)
 
-
+@app.route('/sharkfacts')
+def fact():
+    return jsonify({'fact':random.choice(sharkfacts)})
 if __name__ == '__main__':
     app.run(debug=True)
